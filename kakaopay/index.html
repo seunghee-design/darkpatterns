@@ -166,6 +166,42 @@
     // 영상이 끝나면 Index.html로 이동
     videoPlayer.addEventListener('ended', function() {
       window.location.href = '../';
+
+      // 영상이 끝나면 Index.html로 이동
+    videoPlayer.addEventListener('ended', function() {
+      window.location.href = '../';
+    });
+
+    // 단축키 이동 기능 추가
+    const keyToPath = {
+      '1': '/tving',
+      '2': '/pinterest',
+      '3': '/pillize',
+      '4': '/soldout',
+      '5': '/temu',
+      '6': '/naver',
+      '7': '/kakaotalk',
+      '8': '/kaips',
+      '9': '/coupang',
+      '0': '/musinsa',
+      'q': '/toss',
+      'w': '/danguen',
+      'e': '/oliveyoung',
+      'r': '/baemin',
+      't': '/fastcampus',
+      'y': '/netflix',
+      'u': '/kakaopay',
+      'i': '/adobe',
+      'o': '/cgv',
+      'p': '/samsung',
+    };
+    document.addEventListener('keydown', function(e) {
+      const key = e.key.toLowerCase();
+      if (keyToPath[key]) {
+        window.location.href = keyToPath[key];
+      }
+    });
+      
     });
   </script>
 </body>
