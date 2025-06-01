@@ -112,38 +112,34 @@
     }
     
     // 단축키 이동 기능 추가
-    const keyToBoxId = {
-      '1': 'box1',
-      '2': 'box2',
-      '3': 'box3',
-      '4': 'box4',
-      '5': 'box5',
-      '6': 'box6',
-      '7': 'box7',
-      '8': 'box8',
-      '9': 'box9',
-      '0': 'box10',
-      'q': 'box11',
-      'w': 'box12',
-      'e': 'box13',
-      'r': 'box14',
-      't': 'box15',
-      'y': 'box16',
-      'u': 'box17',
-      'i': 'box18',
-      'o': 'box19',
-      'p': 'box20',
+    const keyToPath = {
+      '1': '/tving',
+      '2': '/pinterest',
+      '3': '/pillize',
+      '4': '/soldout',
+      '5': '/temu',
+      '6': '/naver',
+      '7': '/kakaotalk',
+      '8': '/kaips',
+      '9': '/coupang',
+      '0': '/musinsa',
+      'q': '/toss',
+      'w': '/danguen',
+      'e': '/oliveyoung',
+      'r': '/baemin',
+      't': '/fastcampus',
+      'y': '/netflix',
+      'u': '/kakaopay',
+      'i': '/adobe',
+      'o': '/cgv',
+      'p': '/samsung',
     };
     document.addEventListener('keydown', function(e) {
       const key = e.key.toLowerCase();
-      if (keyToBoxId[key]) {
-        const box = document.getElementById(keyToBoxId[key]);
-        if (box && box.href) {
-          window.location.href = box.href;
-        }
+      if (keyToPath[key]) {
+        window.location.href = keyToPath[key];
       }
     });
-    
   </script>
 </body>
 </html>
