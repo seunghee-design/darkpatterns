@@ -125,47 +125,25 @@
   </div>
 
   <script>
-    const videoInput = document.getElementById('videoInput');
-    const videoPlayer = document.getElementById('videoPlayer');
-
-    // 비디오 클릭 시 재생 & 소리 ON
-    videoPlayer.addEventListener('click', function() {
-      videoPlayer.muted = false;
-      videoPlayer.play();
-    });
-
-    
-    // 파일 첨부 시에도 소리 ON
-    videoInput.addEventListener('change', function() {
-      const file = this.files[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        videoPlayer.src = url;
-        videoPlayer.muted = false;
-        videoPlayer.load();
-      }
-    });
-
-    // 영상이 끝나면 Index.html로 이동
-    videoPlayer.addEventListener('ended', function() {
-      window.location.href = '../';
-    });
-
+    // Vimeo Player 객체 생성
+    const iframe = document.querySelector('iframe');
+    const player = new Vimeo.Player(iframe);
 
     // 단축키 이동 기능 추가
     document.addEventListener('keydown', function(e) {
-    const key = e.key.toLowerCase();
+      const key = e.key.toLowerCase();
 
-    if (key === '1') {
-      videoPlayer.muted = false;
-      videoPlayer.play();
-    } else {
-      const keys = ['2','3','4','5','6','7','8','9','0','q','w','e','r','t','y','i','o','p'];
-      if (keys.includes(key)) {
-        window.location.href = '../index.html';
+      if (key === 'q') {
+        player.setMuted(false).then(function() {
+          player.play();
+        });
+      } else {
+        const keys = ['1','2','3','4','5','6','7','8','9','0','w','e','r','t','y','i','o','p'];
+        if (keys.includes(key)) {
+          window.location.href = '../index.html';
+        }
       }
-    }
-  });
+    });
 
   </script>
 </body>
