@@ -132,7 +132,6 @@
     // 단축키 이동 기능 추가
     document.addEventListener('keydown', function(e) {
       const key = e.key.toLowerCase();
-
       if (key === 'q') {
         player.setMuted(false).then(function() {
           player.play();
