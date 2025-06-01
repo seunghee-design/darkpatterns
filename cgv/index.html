@@ -105,10 +105,10 @@
   <a href="../index.html" id="invisible-home" aria-label="홈으로 이동"></a>
   <!-- 영상 박스 -->
   <div class="video-container">
-    <video id="videoPlayer" controls>
-      <source src="../Asset/Video/CGV.mp4" type="video/mp4">
-    </video>
-    <input type="file" id="videoInput" accept="video/*" style="margin-top: 1rem;">
+    <div style="padding:55.67% 0 0 0;position:relative;">
+      <iframe src="https://player.vimeo.com/video/1089454279?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Cgv"></iframe>
+    </div>
+    <script src="https://player.vimeo.com/api/player.js"></script>
   </div>
 
   <!-- 하단 컴포넌트 -->
@@ -135,23 +135,6 @@
       videoPlayer.play();
     });
 
-    // 아무 키나 누르면 재생 & 소리 ON
-    let hasPlayed = false;
-    document.addEventListener('keydown', function() {
-      if (!hasPlayed) {
-        videoPlayer.muted = true;
-        videoPlayer.play().then(() => {
-          videoPlayer.muted = false;
-          hasPlayed = true;
-        }).catch((e) => {
-          console.log('Play failed:', e);
-        });
-      } else {
-        videoPlayer.muted = false;
-        videoPlayer.play();
-      }
-    });
-
     // 파일 첨부 시에도 소리 ON
     videoInput.addEventListener('change', function() {
       const file = this.files[0];
@@ -168,11 +151,17 @@
       window.location.href = '../';
     });
 
-   // 단축키 이동 기능 추가
-       document.addEventListener('keydown', function(e) {
-      const keys = ['1','2','3','4','5','6','7','8','9','0','q','w','e','r','t','y','u','i','o','p'];
-      if (keys.includes(e.key.toLowerCase())) {
-        window.location.href = '../index.html';
+    // 단축키 이동 기능 추가
+    document.addEventListener('keydown', function(e) {
+      const key = e.key.toLowerCase();
+      if (key === 'p') {
+        videoPlayer.muted = false;
+        videoPlayer.play();
+      } else {
+        const keys = ['1','2','3','4','5','6','7','8','9','0','q','w','e','r','t','y','i','o'];
+        if (keys.includes(key)) {
+          window.location.href = '../index.html';
+        }
       }
     });
   </script>
