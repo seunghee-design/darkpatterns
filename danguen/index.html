@@ -34,14 +34,16 @@
       display: block;
     }
 
+   
     .video-container {
       position: relative;
-      height: 80vh;
       aspect-ratio: 2436 / 1356;
+      width: 80vw;
       background-color: #ddd;
       border-radius: 1rem;
       margin-bottom: 2rem;
       overflow: hidden;
+      margin-top: 1vh;
     }
 
     #videoPlayer {
@@ -55,43 +57,49 @@
     .components-container {
       display: flex;
       align-items: center;
-      gap: 1rem; /* 컴포넌트 간 간격 */
+      gap: 0.8vw;
+      padding: 0 5vw;
+      height: min(7.2vh, 7.2vw);
     }
 
     .circle {
-      width: 4.5rem;
-      height: 4.5rem; /* 1:1 비율 유지 */
-      border-radius: 50%; /* 원형 */
+      aspect-ratio: 1 / 1;
+      width: min(7.2vh, 7.2vw);
+      height: min(7.2vh, 7.2vw);
+      min-width: 3rem;
+      min-height: 3rem;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid #2A2B2B; 
-      overflow: hidden; /* 이미지가 원형 안에 맞게 잘리도록 설정 */
+      border: 1.5px solid #2A2B2B;
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
     .circle img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 이미지가 원형에 맞게 채워지도록 설정 */
+      object-fit: cover;
     }
 
     .rounded-rectangle {
       flex: 1;
-      font-family: 'Pretendard', sans-serif; /* Pretendard 폰트 적용 */
-      background-color: #19191A; /* 직사각형 배경색 */
-      border-radius: 99rem; /* 모서리 둥글게 */
-      padding: 1rem 2.2rem;
+      min-width: 40%;
+      height: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* 텍스트 왼쪽 ㄴ맞춤 */
-      border: 1px solid #2A2B2B; /* 파란색 라인 */
-      color: rgba(255, 255, 255, 0.8); /* 텍스트 색상 */
-      font-size: 0.9rem;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 135%; /* 2.21rem */
-      text-align: left; /* 텍스트 왼쪽 맞춤 */
+      background-color: #19191A;
+      border-radius: 99rem;
+      border: 1.5px solid #2A2B2B;
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'Pretendard', sans-serif;
+      font-size: clamp(0.8rem, calc(0.25 * min(6.0vh, 6.0vw)), 1.2rem);
+      padding: 0 2.2em;
+      line-height: 1.35;
+      text-align: left;
     }
+
 
   </style>
 </head>
