@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark pattern Archive</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000; /* 배경색 검정 */
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2.1vw 2.5vw; /* 가로 간격은 2vw, 세로 간격은 1.5vw로 설정 */
+      height: 85vh; /* 전체 그리드의 높이 */
+    }
+
+    .box {
+      aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+      border-radius: 1.5rem; /* 모서리 둥글게 */
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: #fff; /* 텍스트 색상 */
+      font-size: 1.5rem;
+      font-weight: bold;
+      background-color: #444; /* 기본 배경색 */
+    }
+
+    .box.show-image {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: transparent;
+      transition: background-image 0.5s, color 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <a id="box1" href="1.Tving.html" class="box" style="background-color: #6fecff;" data-img="Asset/Logo/Tving2.png"></a>
+    <a id="box2" href="2.Pinterest.html" class="box" style="background-color: #f73f39;" data-img="Asset/Logo/Pinterest2.png"></a>
+    <a id="box3" href="3.Pillize.html" class="box" style="background-color: #622df6;" data-img="Asset/Logo/Pillize.png"></a>
+    <a id="box4" href="4.Soldout.html" class="box" style="background-color: #232b41;" data-img="Asset/Logo/Soldout2.png"></a>
+    <a id="box5" href="5.Temu.html" class="box" style="background-color: #fb7701;" data-img="Asset/Logo/Temu2.png"></a>
+    <a id="box6" href="6.Naver.html" class="box" style="background-color: #00dd0e;" data-img="Asset/Logo/Naver2.png"></a>
+    <a id="box7" href="7.KaKaotalk.html" class="box" style="background-color: #ffeb00;" data-img="Asset/Logo/Kakaotalk2.png"></a>
+    <a id="box8" href="8.KAIPS.html" class="box" style="background-color: #1f8fff;" data-img="Asset/Logo/KAIPS2.png"></a>
+    <a id="box9" href="9.Coupang.html" class="box" style="background-color: #ee4630;" data-img="Asset/Logo/Coupang2.png"></a>
+    <a id="box10" href="10.Musinsa.html" class="box" style="background-color: #393939;" data-img="Asset/Logo/Musinsa2.png"></a>
+    <a id="box11" href="11.Toss.html" class="box" style="background-color: #106fff;" data-img="Asset/Logo/Toss.png"></a>
+    <a id="box12" href="12.Danguen.html" class="box" style="background-color: #ff6f00;" data-img="Asset/Logo/Dangeun2.png"></a>
+    <a id="box13" href="13.Oliveyoung.html" class="box" style="background-color: #8ce829;" data-img="Asset/Logo/Oliveyoung2.png"></a>
+    <a id="box14" href="14.Baemin.html" class="box" style="background-color: #51d8d6;" data-img="Asset/Logo/Baemin2.png"></a>
+    <a id="box15" href="15.FastCampus.html" class="box" style="background-color: #f6364f;" data-img="Asset/Logo/Fastcampus2.png"></a>
+    <a id="box16" href="16.Netfilx.html" class="box" style="background-color: #D33027;" data-img="Asset/Logo/Netflix2.png"></a>
+    <a id="box17" href="17.Kakaopay.html" class="box" style="background-color: #ffeb00;" data-img="Asset/Logo/Kakaopay2.png"></a>
+    <a id="box18" href="18.Adobe.html" class="box" style="background-color: #EA33B0;" data-img="Asset/Logo/Adobe.png"></a>
+    <a id="box19" href="19.CGV.html" class="box" style="background-color: #e9422f;"data-img="Asset/Logo/CGV.png"></a>
+    <a id="box20" href="20.Samsung.html" class="box" style="background-color: #1426ac;"data-img="Asset/Logo/Samsung2.png"></a>
+  </div>
+
+  <script>
+    const boxes = Array.from(document.querySelectorAll('.box'));
+    const showDuration = 3000; // 이미지 노출 시간(3초)
+    const groupCount = 2; // 동시에 보일 box 개수
+    const interval = 1500 * Math.ceil(boxes.length / groupCount); // 각 그룹의 전체 주기
+
+    // Fisher-Yates shuffle
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const shuffledIndexes = shuffle([...Array(boxes.length).keys()]);
+
+    for (let g = 0; g < groupCount; g++) {
+      // 그룹별로 box 인덱스 분배
+      const group = [];
+      for (let i = g; i < shuffledIndexes.length; i += groupCount) {
+        group.push(shuffledIndexes[i]);
+      }
+      group.forEach((boxIdx, i) => {
+        const box = boxes[boxIdx];
+        function animateBox() {
+          const img = box.getAttribute('data-img');
+          if (!img) return;
+          box.classList.add('show-image');
+          box.style.backgroundImage = `url('${img}')`;
+          setTimeout(() => {
+            box.classList.remove('show-image');
+            box.style.backgroundImage = '';
+          }, showDuration);
+
+          setTimeout(animateBox, interval);
+        }
+        // 그룹별로 시작 타이밍을 다르게 (g * 500ms 오프셋)
+        setTimeout(animateBox, g * 500 + i * 1500);
+      });
+    }
+  </script>
+</body>
+</html>
